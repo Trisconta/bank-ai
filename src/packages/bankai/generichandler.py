@@ -3,6 +3,9 @@
 (c)2026  Henrique Moreira
 """
 
+# pylint: disable=missing-function-docstring,raise-missing-from
+
+
 class DataSequence:
     """ Generic container for a sequence of parsed items.
     Child classes are expected to populate self._data with dictionaries.
@@ -13,7 +16,7 @@ class DataSequence:
 
     def add(self, item:dict):
         """Append a parsed dictionary to the internal sequence."""
-        assert isinstance(item, dict), name
+        assert isinstance(item, dict), self.name
         self._data.append(item)
 
     def all(self):
