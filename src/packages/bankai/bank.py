@@ -3,6 +3,8 @@
 (c)2026  Henrique Moreira
 """
 
+# pylint: disable=missing-function-docstring,raise-missing-from
+
 from decimal import Decimal, ROUND_HALF_UP
 from bankai.generichandler import DataSequence
 

@@ -4,7 +4,7 @@
 """
 
 from dataclasses import dataclass
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal
 from typing import Optional
 
 from bankai.bank import to_dec
@@ -12,6 +12,7 @@ from bankai.bank import to_dec
 
 @dataclass
 class Movement:
+    """ Bare: Movement class! """
     mov_date: str
     value_date: str
     description: str
@@ -23,6 +24,7 @@ class Movement:
 
     @staticmethod
     def from_dict(d: dict) -> "Movement":
+        """ Converts a TxuMovement into this class dictionary. """
         res = Movement(
             mov_date=d["MovementDate"],
             value_date=d["ValueDate"],
