@@ -1,0 +1,3 @@
+[submodule "src/external/gen-bank-classify"]
+	path = src/external/gen-bank-classify
+	url = ../gen-bank-classify.git
