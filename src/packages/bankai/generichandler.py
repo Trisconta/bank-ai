@@ -5,6 +5,8 @@
 
 # pylint: disable=missing-function-docstring,raise-missing-from
 
+DEBUG = 1
+
 
 class DataSequence:
     """ Generic container for a sequence of parsed items.
@@ -13,6 +15,7 @@ class DataSequence:
     def __init__(self, data=None, name="d"):
         self.name = name
         self._data = [] if data is None else data
+        self._debug = DEBUG
 
     def add(self, item:dict):
         """Append a parsed dictionary to the internal sequence."""

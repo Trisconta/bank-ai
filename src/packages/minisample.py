@@ -25,6 +25,7 @@ def do_script(args):
 
 def do_run(param):
     fname, rest = param[0], param[1:]
+    assert not rest, "Unexpected parameters!"
     mov = bankai.bank.BankMov(fname)
     btp = mov.get_me()
     lst = btp.content()
@@ -33,10 +34,11 @@ def do_run(param):
         bankai.bmovement.Movement.from_dict(item) for item in lst
     ]
     print(*movements, sep="\n\n")
-    indexed = bankai.imovement.index_movements(movements, 2001)
+    indexed = bankai.imovement.index_movements(movements, 1001)  # indexed_... sorts out dates!
     print("+++" * 9)
-    print(*indexed, sep="\n\n")
+    print(*indexed, sep="\n")
     return lst, ""
 
 
-main()
+if __name__ == "__main__":
+    main()

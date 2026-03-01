@@ -40,6 +40,14 @@ class BankTransactionParser(DataSequence):
 		7. Fix ('='), or provisional balance
 		8. Category
     """
+    _expected = (
+        "1: Movement date\n2: Value date\n3: Description\n"
+        "4: Debit\n5: Credit\n"
+        "6: Balance (Contabilistic)\n"
+        "7: Available Balance (Saldo Disponivel)\n"
+        "8: Category (Bank may update category -- CGD)\n"
+    )
+
     def __init__(self, name="b"):
         """ Initializer, calls super-class. """
         super().__init__(name=name)
@@ -86,9 +94,18 @@ class BankTransactionParser(DataSequence):
             p.strip() if p.strip() else None
             for p in raw_line.split(";")
         ]
-        if len(parts) != 8:
+        s_expected = BankTransactionParser._expected
+        s_list = self.parts_list(parts)
+        if len(parts) == 8:
+            if self._debug > 0:
+                print(
+                    f"Debug: idx={idx} (len={len(parts)}): {s_list}\n{s_expected}",
+                    end="\n\n",
+                )
+        else:
             raise ValueError(
-                f"Invalid record format: expected 8 fields, got {len(parts)}: {self.parts_list(parts)}"
+                f"Invalid record format: expected 8 fields, got {len(parts)}: {s_list}\n"
+                f"Expected: {s_expected}",
             )
         parts = [None] + parts
         mov_date = parts[1]
